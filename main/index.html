@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <style>html{visibility: hidden;opacity:0;}</style>
+    <link type="image/png" sizes="32x32" rel="icon" href="love-32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://threejs.org/build/three.js"></script>
+    <script src="https://threejs.org/examples/js/libs/tween.min.js"></script>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>chatterbots</title>
+  </head>
+  
+  <body>
+    
+    <div id="container"></div>
+    <div class="content">
+      <div class="title-container">
+        <div class="logo-container">
+          <img src="love-32.png" alt="Logo" class="logo">
+        </div>
+        <h1 id="heading">chatterbots</h1>
+      </div>
+      <div id="line_box"><div class="line"></div></div>
+      <div id="slide">
+        <p id="simple">
+          Keep AI simple.
+        </p>
+      </div>
+
+      <div id="contact">
+        <form name="contact" method="POST" action="/contact/contact" data-netlify="true">
+          <p>
+            <textarea class="message" name="message" required placeholder=""></textarea>
+          </p>
+          <p>
+            <button id="submit" type="submit">📨</button>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+    <script>
+
+      // fade in
+
+      $('#heading').delay(800).animate({"opacity": "1"}, 3000);
+      $('.logo-container').delay(800).animate({"opacity": "1"}, 3000);
+      $('#navbar').delay(1750).animate({"opacity": "1"}, 3000);
+      $('.line').delay(800).animate({"opacity": "1"}, 3000);
+      $('form').delay(2000).animate({"opacity": "1"}, 3000);
+
+      // rainbow text on click
+
+      // $('h1').on('click', function() {
+      //   $(this).toggleClass('wordsClick');
+      // });
+
+    </script>
+    <script>
+
+      // particle click effect
+      const anchors = document.querySelectorAll('body')
+
+      Array.prototype.forEach.call(anchors, function(anchor) {
+        anchor.addEventListener('click', explode)
+      })
+
+      function explode(e) {
+        let x = e.clientX
+        let y = e.clientY
+        let c = document.createElement('canvas')
+        let ctx = c.getContext('2d')
+        let ratio = window.devicePixelRatio
+        let particles = []
+        
+        document.body.appendChild(c)
+        
+        c.style.position = 'absolute'
+        c.style.left = (x - 100) + 'px'
+        c.style.top = (y - 100) + 'px'
+        c.style.pointerEvents = 'none'
+        c.style.width = 200 + 'px'
+        c.style.height = 200 + 'px'
+        c.width = 200 * ratio
+        c.height = 200 * ratio
+        
+        function Particle() {
+          return {
+            x: c.width / 2,
+            y: c.height / 2,
+            radius: r(2,2),
+            color: 'rgb(' + [r(1,2), r(250,255), r(200,255)].join(',') + ')',
+            rotation: r(0,360, true),
+            speed: r(8,12),
+            friction: .93,
+            opacity: r(0,1, true),
+            yVel: 0,
+            gravity: 0.01
+          }
+        }
+        
+        for(var i=0; ++i<25;) {
+          particles.push(Particle())
+        }
+        
+        console.log(particles[0])
+        
+        function render() {
+          ctx.clearRect(0, 0, c.width, c.height)
+          
+          particles.forEach(function(p, i) {
+            
+            angleTools.moveOnAngle(p, p.speed)
+            
+            p.opacity -= 0.01
+            p.speed *= p.friction
+            p.radius *= p.friction
+            
+            p.yVel += p.gravity
+            p.y += p.yVel
+            
+            if(p.opacity < 0) return
+            if(p.radius < 0) return
+            
+            ctx.beginPath()
+            ctx.globalAlpha = p.opacity
+            ctx.fillStyle = p.color
+            ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, false)
+            ctx.fill()
+          })
+        }
+        
+        ;(function renderLoop(){
+          requestAnimationFrame(renderLoop)
+          render()
+        })()
+        
+        setTimeout(function() {
+          document.body.removeChild(c)
+        }, 3000)
+      }
+
+      let angleTools={getAngle:function(t,n){var a=n.x-t.x,e=n.y-t.y;return Math.atan2(e,a)/Math.PI*180},getDistance:function(t,n){var a=t.x-n.x,e=t.y-n.y;return Math.sqrt(a*a+e*e)},moveOnAngle:function(t,n){let a=this.getOneFrameDistance(t,n);t.x+=a.x,t.y+=a.y},getOneFrameDistance:function(t,n){return{x:n*Math.cos(t.rotation*Math.PI/180),y:n*Math.sin(t.rotation*Math.PI/180)}}};
+      function r(a,b,c){ return parseFloat((Math.random()*((a?a:1)-(b?b:0))+(b?b:0)).toFixed(c?c:0)); }
+
+    </script>
+
+  </body>
+
+</html>
