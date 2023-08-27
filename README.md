@@ -1,3 +1,1 @@
-# dylnbk-page
-
-My link-tree webpage, a three.js experiment.
+# landing page for upcoming chatterbots project
