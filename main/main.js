@@ -24,13 +24,13 @@ animate();
 
 function init() {
 
-  
-
   // select DOM element that will be used to render scene
   container = document.getElementById( 'container' );
 
   document.addEventListener( 'mousemove', onMouseMove, false );
-  document.addEventListener( 'click', onClick, false );
+  document.querySelectorAll('body :not(input):not(button)').forEach((item) => {
+    item.addEventListener('click', onClick, false);
+  });
 
   // create a camera using the container for dimensions & set its position
   camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 2000 );
@@ -55,7 +55,7 @@ function init() {
   const center = new THREE.Vector3(0, 0, 0); // central point
 
   // create objects
-  for ( let i = 0; i < 150; i ++ ) {
+  for ( let i = 0; i < 100; i ++ ) {
 
     // make cubes
     const geometry = new THREE.SphereGeometry(0.5);
@@ -63,7 +63,7 @@ function init() {
     const mesh = new THREE.Mesh( geometry, material );
 
     // random coordinates generated and positions set
-    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(75));
+    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(50));
     mesh.position.set(x, y, z);
     mesh.rotation.set(x, y, z);
 
@@ -79,15 +79,13 @@ function init() {
     spheres.push(mesh);
 
     // create line material
-    const lineMaterial = new THREE.LineBasicMaterial({color: 0x152133, transparent: true, opacity: 0.5});
+    const lineMaterial = new THREE.LineBasicMaterial({color: 0x2C446C, transparent: true, opacity: 0.5});
 
     // create geometry for the line to connect cube and central point
     const lineGeometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, y, z), center]);
 
     // create line
     const line = new THREE.Line(lineGeometry, lineMaterial);
-
-
 
     group.add(line);
   }
@@ -147,19 +145,24 @@ function init() {
 }
 
 function onClick( event ) {
-  // update mouse position
-  event.preventDefault();
-  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
-  // update the picking ray with the camera and mouse position
+  var clientX, clientY;
+
+  if(event.type === 'touchstart') {
+    clientX = event.touches[0].clientX;
+    clientY = event.touches[0].clientY;
+  } else {
+    clientX = event.clientX;
+    clientY = event.clientY;
+  }
+
+  mouse.x = ( clientX / window.innerWidth ) * 2 - 1;
+  mouse.y = - ( clientY / window.innerHeight ) * 2 + 1;
+
   raycaster.setFromCamera( mouse, camera );
-
-  // calculate objects intersecting the picking ray
   const intersects = raycaster.intersectObjects( spheres );
 
   if (intersects.length > 0) {
-    // Change the color of the first intersected object to a random color
     intersects[0].object.material.color.set(Math.random() * 0xFFFFFF);
   }
 }
