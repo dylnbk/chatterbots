@@ -395,7 +395,7 @@ ul.chatbox {
   .line {
     max-width: 350px;
     top: 100px;
-    animation: line 2.5s linear forwards, fadeIn 1.5s ease-in-out forwards;;
+    animation: line 2.5s linear forwards, fadeIn 2s ease-in-out forwards;;
   }
 
   .chatbox .incoming span {
