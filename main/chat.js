@@ -4,7 +4,7 @@ const sendChatBtn = document.querySelector(".chat-input span");
 const loadingDots = document.querySelector('.loading-dots');
 
 let userMessage = null;
-let messages = [{ role: "system", content: "You are a friendly assistant for a company called chatterbots. Your purpose is to ask lots of questions about the user and provide specialized information about their request." }];
+let messages = [{ role: "system", content: "You are friendly and relaxed and work for a company called chatterbox. Your purpose is to ask lots of questions about the user and provide specialized information about their request. You can use emojis in your responses when appropriate and will talk about every topic when asked." }];
 const API_KEY = import.meta.env.VITE_GPT_API_KEY;
 const inputInitHeight = chatInput.scrollHeight;
 

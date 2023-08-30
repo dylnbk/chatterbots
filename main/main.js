@@ -39,7 +39,7 @@ function init() {
   // create a scene, no background, add fog - helps provide perspective
   scene = new THREE.Scene();
   scene.background = null;
-  scene.fog = new THREE.FogExp2( 0x000000, 0.008 );
+  scene.fog = new THREE.FogExp2( 0x000000, 0.009 );
 
   // create lighting
   const hemiLight = new THREE.HemisphereLight( 0x6499FF, 0x6499FF, 1 );
@@ -58,12 +58,12 @@ function init() {
   for ( let i = 0; i < 100; i ++ ) {
 
     // make cubes
-    const geometry = new THREE.SphereGeometry(0.5);
+    const geometry = new THREE.SphereGeometry(0.6);
     const material = new THREE.MeshStandardMaterial( { color: 0xffffff, flatShading: true } );
     const mesh = new THREE.Mesh( geometry, material );
 
     // random coordinates generated and positions set
-    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(50));
+    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(60));
     mesh.position.set(x, y, z);
     mesh.rotation.set(x, y, z);
 

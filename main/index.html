@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>chatterbots</title>
+    <title>chatterbox</title>
   </head>
   
   <body>
@@ -22,7 +22,7 @@
         <div class="logo-container">
           <img src="love-32.png" alt="Logo" class="logo">
         </div>
-        <h1 id="heading">chatterbots</h1>
+        <h1 id="heading">chatterbox</h1>
       </div>
       <div id="line_box"><div class="line"></div></div>
       <div id="slide">
@@ -38,13 +38,13 @@
           <ul class="chatbox">
               <li class="chat incoming">
                 <span class="material-symbols-outlined" style="opacity: 0;">🤖</span>
-                <p class="initial-message" style="opacity: 0;">Welcome to chatterbots 💙<br><br>How can I help you today?</p>
+                <p class="initial-message" style="opacity: 0;">Welcome to chatterbox 💙<br><br>How can I help you today?</p>
               </li>
             </ul>
           
           <div class="chat-input">
             <textarea placeholder="Enter a message..." required></textarea>
-            <span id="send-btn" class="material-symbols-rounded">📨</span>
+            <span><img src="sent-96.png" alt="Send" id="send-btn"></span>
           </div>
         </div>
       </div>
@@ -61,9 +61,20 @@
       $('.initial-message').delay(800).animate({"opacity": "1"}, 2500);
       $('.material-symbols-outlined').delay(800).animate({"opacity": "1"}, 2500);
 
-    </script>
+      var chatInput = document.querySelector('.chatbot .chat-input');
+      var textArea = document.querySelector('.chat-input textarea');
 
-    <script>
+      textArea.addEventListener('click', function() {
+        chatInput.classList.add('clicked');
+      });
+
+      document.addEventListener('click', function(event) {
+        var isClickInside = textArea.contains(event.target);
+        if (!isClickInside) {
+          //the click was outside the .chat-input, so remove the 'clicked' class
+          chatInput.classList.remove('clicked');
+        }
+      });
 
       // particle click effect
       const anchors = document.querySelectorAll('body')
