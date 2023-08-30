@@ -5,21 +5,20 @@ const loadingDots = document.querySelector('.loading-dots');
 
 let userMessage = null;
 let messages = [{ role: "system", content: "You are friendly and relaxed and work for a company called chatterbox. Your purpose is to ask lots of questions about the user and provide specialized information about their request. You can use emojis in your responses when appropriate and will talk about every topic when asked. If the user wants to contact us, they can send an email to dyln.bk@gmail.com" }];
-const API_KEY = import.meta.env.VITE_GPT_API_KEY;
 const inputInitHeight = chatInput.scrollHeight;
 
 
 // Helper function to escape HTML by replacing special characters with their HTML entities.
 function escapeHTML(str) {
     const specialChars = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      '\'': '&#039;',
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        '\'': '&#039;',
     };
     return str.replace(/[&<>"']/g, m => specialChars[m]);
-  }
+}
 
 const createChatLi = (message, className) => {
     // Create a chat <li> element with passed message and className
@@ -38,51 +37,61 @@ const generateResponse = (chatElement) => {
     // Add user's current message to messages array
     messages.push({ role: "user", content: userMessage });
 
-    // Define the properties and message for the API request
-    const requestOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${API_KEY}`
-        },
-        body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: messages,
-        })
-    }
 
-    // Send POST request to API, get response and set the reponse as paragraph text
-    fetch(API_URL, requestOptions).then(res => res.json()).then(data => {
-        // Check for the tokens usage and remove 1 index if gate condition satisfies.
-        if (data['usage']['total_tokens'] > 7000) {
-            messages.splice(1, 1);
-        }
+    fetch('/.netlify/functions/manageAPIKey')
+        .then(response => response.json())
+        .then(data => {
+            // Here's the API key
+            const API_KEY = data.key;
 
-        loadingDots.style.display = 'none';
-        let rawAssistantMessage = data.choices[0].message.content.trim();
-        let parts = rawAssistantMessage.split("```");
+            // Define the properties and message for the API request
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: messages,
+                })
+            };
 
-        let assistantMessage = "";
-        for(let i=0; i<parts.length; i++){
-        if(i % 2 === 0){
-            // This is a normal text part
-            assistantMessage += escapeHTML(parts[i]);
-        }else{
-            // This is a code part
-            assistantMessage += `<pre><code>${escapeHTML(parts[i])}</code></pre>`;
-        }
-        }
+            // Send POST request to API, get response and set the reponse as paragraph text
+            fetch(API_URL, requestOptions)
+                .then(res => res.json())
+                .then(data => {
+                    // Check for the tokens usage and remove 1 index if gate condition satisfies.
+                    if (data['usage']['total_tokens'] > 7000) {
+                        messages.splice(1, 1);
+                    }
 
-        messageElement.innerHTML = assistantMessage;
+                    loadingDots.style.display = 'none';
+                    let rawAssistantMessage = data.choices[0].message.content.trim();
+                    let parts = rawAssistantMessage.split("```");
 
-        // Add assistant's response to messages array
-        messages.push({ role: "assistant", content: rawAssistantMessage });
+                    let assistantMessage = "";
+                    for (let i = 0; i < parts.length; i++) {
+                        if (i % 2 === 0) {
+                            // This is a normal text part
+                            assistantMessage += escapeHTML(parts[i]);
+                        } else {
+                            // This is a code part
+                            assistantMessage += `<pre><code>${escapeHTML(parts[i])}</code></pre>`;
+                        }
+                    }
 
-    }).catch(() => {
-        loadingDots.style.display = 'none';
-        messageElement.classList.add("error");
-        messageElement.textContent = "Oops! Something went wrong. Please try again.";
-    }).finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
+                    messageElement.innerHTML = assistantMessage;
+
+                    // Add assistant's response to messages array
+                    messages.push({ role: "assistant", content: rawAssistantMessage });
+
+                }).catch(() => {
+                    loadingDots.style.display = 'none';
+                    messageElement.classList.add("error");
+                    messageElement.textContent = "Oops! Something went wrong. Please try again.";
+                }).finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
+        });
 }
 
 const handleChat = () => {

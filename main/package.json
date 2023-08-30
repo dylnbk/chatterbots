@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node copy.js",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.8.0"
+    "shelljs": "^0.8.5",
+    "vite": "^2.8.0",
+    "vite-plugin-copy": "^0.1.6"
   },
   "dependencies": {
     "jquery": "^3.6.0",
