@@ -68,11 +68,21 @@ function init() {
     mesh.rotation.set(x, y, z);
 
     // scale object
-    mesh.scale.setScalar( Math.random() * 3 );
+    if (i % 2 == 0) {
+      mesh.scale.setScalar( Math.random() * 2 );
+    }
+    else {
+      mesh.scale.setScalar( Math.random() * 4 );
+    }
+
 
     // set colours
-    mesh.material.color.setHex(0xFFFFFF);
-
+    if (i % 3 == 0) {
+      mesh.material.color.setHex(0x2C446C);
+    }
+    else {
+      mesh.material.color.setHex(0xFFFFFF);
+    }
     // add objects to the group
     group.add(mesh);
 
@@ -101,13 +111,6 @@ function init() {
   renderer.setSize( container.offsetWidth, container.offsetHeight );
   renderer.toneMapping = THREE.ReinhardToneMapping;
   container.appendChild( renderer.domElement );
-
-  // set scene controls
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.minDistance = 25;
-  controls.maxDistance = 450;
-  controls.enableDamping = true;
-  controls.enablePan = false;
 
   // post processing
   const renderPass = new RenderPass( scene, camera );
@@ -148,13 +151,8 @@ function onClick( event ) {
 
   var clientX, clientY;
 
-  if(event.type === 'touchstart') {
-    clientX = event.touches[0].clientX;
-    clientY = event.touches[0].clientY;
-  } else {
-    clientX = event.clientX;
-    clientY = event.clientY;
-  }
+  clientX = event.clientX;
+  clientY = event.clientY;
 
   mouse.x = ( clientX / window.innerWidth ) * 2 - 1;
   mouse.y = - ( clientY / window.innerHeight ) * 2 + 1;
@@ -168,7 +166,6 @@ function onClick( event ) {
 }
 
 function onMouseMove( event ) {
-  event.preventDefault();
 
   mouseX = event.clientX;
   mouseY = event.clientY;
@@ -230,9 +227,12 @@ function animate() {
   group.rotation.z += 0.0005;
   group.rotation.x += - 0.0002;
 
-  if (mouseX > 0) {
-    group.rotation.x = -mouseY * 0.0003;
-    group.rotation.y = -mouseX * 0.0003;
+  const isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+
+  // only rotate in animate function if not on a touch device
+  if (!isTouchDevice && mouseX > 0) {
+    group.rotation.x = -mouseY * 0.001;
+    group.rotation.y = -mouseX * 0.001;
   }
 
   composer.render();

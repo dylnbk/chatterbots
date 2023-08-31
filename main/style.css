@@ -92,12 +92,18 @@ img {
 }
 
 h1 {
-  color: #6499FF;
   font-family: 'Ropa Sans', sans-serif;
   font-size: 100px;
   letter-spacing: -4px;
+  padding-right: 8px;
   margin-left: 1px;
+  background: linear-gradient(160deg, #75a5ff 20%, #546bffb6);
+  -webkit-background-clip: text; /* For Webkit browsers (Chrome, Safari) */
+  background-clip: text; /* Standard property */
+  color: transparent; /* Hide the original text color */
 }
+
+
 
 .content {
   position: absolute;
