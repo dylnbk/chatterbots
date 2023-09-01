@@ -11,7 +11,7 @@
 }
 
 #simple {
-  position: absolute;
+  position: fixed;
   top: 160px;
   left: 0;
   right: 0;
@@ -116,7 +116,7 @@ h1 {
 }
 
 .line {
-  position: absolute;
+  position: fixed;
   top: 140px;
   left: 0;
   right: 0;
