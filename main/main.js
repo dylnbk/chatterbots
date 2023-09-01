@@ -89,7 +89,7 @@ function init() {
     spheres.push(mesh);
 
     // create line material
-    const lineMaterial = new THREE.LineBasicMaterial({color: 0x2C446C, transparent: true, opacity: 0.5});
+    const lineMaterial = new THREE.LineBasicMaterial({color: 0x587190, transparent: true, opacity: 0.5});
 
     // create geometry for the line to connect cube and central point
     const lineGeometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, y, z), center]);
@@ -149,15 +149,14 @@ function init() {
 
 function onClick( event ) {
 
-  var clientX, clientY;
+  // Define bounding box of the container
+  const bbox = container.getBoundingClientRect(); 
 
-  clientX = event.clientX;
-  clientY = event.clientY;
-
-  mouse.x = ( clientX / window.innerWidth ) * 2 - 1;
-  mouse.y = - ( clientY / window.innerHeight ) * 2 + 1;
+  mouse.x = ( (event.clientX - bbox.left) / bbox.width ) * 2 - 1;
+  mouse.y = - ( (event.clientY - bbox.top) / bbox.height ) * 2 + 1;
 
   raycaster.setFromCamera( mouse, camera );
+
   const intersects = raycaster.intersectObjects( spheres );
 
   if (intersects.length > 0) {
@@ -170,8 +169,11 @@ function onMouseMove( event ) {
   mouseX = event.clientX;
   mouseY = event.clientY;
 
-  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  // Define bounding box of the container
+  const bbox = container.getBoundingClientRect(); 
+
+  mouse.x = ( (event.clientX - bbox.left) / bbox.width ) * 2 - 1;
+  mouse.y = - ( (event.clientY - bbox.top) / bbox.height ) * 2 + 1;
 
   raycaster.setFromCamera( mouse, camera );
 
