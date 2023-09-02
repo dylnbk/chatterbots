@@ -1,1 +1,1 @@
-# landing page for upcoming chatterbots project
+# BotBuddy - a chatbot powered by GPT
