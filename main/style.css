@@ -174,7 +174,7 @@ ul.chatbox {
 .chatbot .chatbox {
   overflow-y: auto;
   height: calc(100% - 450px);
-  padding: 30px 20px 100px;
+  padding: 30px 20px 100px 0px !important;
 }
 
 .chatbox .chat {
@@ -183,10 +183,10 @@ ul.chatbox {
 }
 .chatbox .outgoing {
   justify-content: flex-end;
+  margin-left: 68px;
 }
 .chatbox .incoming span {
-  min-width: 70px;
-  max-width: 70px;
+
   color: #fff;
   font-size: 36px;
   cursor: default;
@@ -195,14 +195,15 @@ ul.chatbox {
   align-self: flex-end;
   background: #649aff00;
   border-radius: 4px;
-  margin: 0 0px 0px 10px;
   padding-bottom: 14px;
+  padding-left: 10px;
+  margin-right: 10px;
 }
 .chatbox .chat p {
   word-wrap: break-word;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
-  padding: 14px 12px;
+  padding: 12px 12px;
   border-radius: 10px 10px 0 10px;
   max-width: 100%;
   font-size: 0.95rem;
@@ -342,7 +343,7 @@ ul.chatbox {
 
   to {
     left: 0%;
-    width: 600px;
+    width: 650px;
   }
 }
 
@@ -380,6 +381,11 @@ ul.chatbox {
 
   .chatbot .chatbox {
     height: calc(100% - 410px);
+    padding: 30px 10px 100px 0px !important;
+  }
+
+  .chatbox .outgoing {
+    margin-left: 67px;
   }
 
   .title-container {
@@ -428,13 +434,17 @@ ul.chatbox {
 
   .chatbox .incoming span {
     font-size: 35px;
-    margin: 0 0;
+    margin: 0px 10px 0px 0px;
     padding-bottom: 14px;
   }
 
 }
 
 @media (max-width: 380px) {
+
+  .chatbox .outgoing {
+    margin-left: 60px;
+  }
 
   .chatbox .incoming span {
     font-size: 30px;
