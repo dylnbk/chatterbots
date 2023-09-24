@@ -275,16 +275,6 @@ ul.chatbox {
   transition:all .5s ease-in-out;
 }
 
-.loading-dots:after {
-  position: absolute;
-  bottom: 250px;
-  left: 0;
-  right: 20px;
-  margin: auto;
-  content: ' .';
-  animation: dots 1s steps(18, end) infinite;
-}
-
 @keyframes dots {
   0%, 20% {
     color: rgba(0,0,0,0);
@@ -375,10 +365,6 @@ ul.chatbox {
     width: 35px;
   }
 
-  .loading-dots:after {
-    bottom: 205px;
-  }
-
   .chatbot .chatbox {
     height: calc(100% - 410px);
     padding: 30px 10px 100px 0px !important;
@@ -448,10 +434,6 @@ ul.chatbox {
 
   .chatbox .incoming span {
     font-size: 30px;
-  }
-
-  .loading-dots:after {
-    bottom: 175px;
   }
 
   .title-container {
