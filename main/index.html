@@ -3,79 +3,438 @@
 <html lang="en">
 
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW75T8L49D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MW75T8L49D');
+    </script>
     <meta charset="UTF-8" />
     <style>html{visibility: hidden;opacity:0;}</style>
     <link type="image/png" sizes="32x32" rel="icon" href="love-32.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>BotBuddy</title>
   </head>
   
-  <body>
+  <body style="opacity: 0;">
     
     <div id="container"></div>
     <div class="content">
+
       <div class="title-container">
         <div class="logo-container">
           <img src="love-32.png" alt="Logo" class="logo">
         </div>
-        <h1 id="heading">BotBuddy</h1>
-      </div>
-      <div class="line"></div>
-      <div id="slide">
-        <p id="simple">
-          Keep AI simple.
-        </p>
-      </div>
+        <h1 id="heading"><a href="#" onclick="return false;">BOTBUDDY</a></h1>
 
+        <ul id="navbar" style="opacity: 0;">
+          <li><a href="#" onclick="return false;">CREATE</a></li>
+          <li><a href="#" onclick="return false;">CHAT</a></li>
+          <li><a href="#" onclick="return false;">CONTACT</a></li>
+          <li id="closebtn"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="display: none;">&times;</a></li>
+        </ul>
+
+      </div>
 
       <div id="contact">
-        <div class="chatbot">
-          <div class="loading-dots" style="display: none;"></div>
-          <ul class="chatbox">
-              <li class="chat incoming">
-                <span class="material-symbols-outlined" style="opacity: 0;">🤖</span>
-                <p class="initial-message" style="opacity: 0; width: 100%;">Welcome to BotBuddy 💙 <br><br>I'm here to help with whatever you need, just begin chatting with me!</p>
-              </li>
+
+        <div class="card-container">
+          <img src="cloud-comp.png" id="cloud-comp">
+          <img src="social-media.png" id="social-media">
+          <img src="tetris-block-5.png" id="tetris-block-5">
+          <img src="block-6.png" id="block-6">
+          <img src="tetris-block-6.png" id="tetris-block-6">
+          <img src="window-2.png" id="window-2">
+          <img src="texture-3.png" id="texture-6">
+          <img src="texture-4.png" id="texture-7">
+          <img src="grid-5.png" id="grid-5">
+          <img src="grid-2.png" id="grid-2">
+          <div class="card">
+            <p id="info">Chatbots can be more than just automated customer service agents. Whether you're a personal brand or a small business, BotBuddy can create personalized chatbots that are tailored to your unique profile. Try our demo <a href="#" id="chat-link">here</a>, you can customize the demo bot <a href="#" id="create-link">here</a>. Please contact us for more information!</p>
+
+            <hr>
+            
+            <p><h1 class="card-h1">PERSONAL:</h1></p>
+            <ul>
+              <li>Personal chatbots tailored to match your personality, expressions and tone.</li>
+              <li>Integration on platforms such as Discord, Telegram, Facebook and standalone websites.</li>
+              <li>Direct communication with your audience, making interactions vibrant and meaningful.</li>
+              <li>Capable of understanding and responding to FAQs about your work, upcoming plans, or portfolio.</li>
+              <li>Complete setup provided, no need for any technical knowledge.</li>
             </ul>
-          
-          <div class="chat-input">
-            <textarea placeholder="Enter a message..." required></textarea>
-            <span><img src="sent-96.png" alt="Send" id="send-btn"></span>
+            <p><h1 class="card-h1">BUSINESS:</h1></p>
+            <ul>
+              <li>Custom chatbots for businesses, to meet operational needs or customer service goals.</li>
+              <li>Integration into your business website, standalone applications, and social platforms.</li>
+              <li>Advanced chatbots that can serve as a knowledge base, providing customers with accurate and quick responses.</li>
+              <li>Automation of tasks, freeing up your team to focus on more complex work.</li>
+              <li>Multi-language support to serve your customers with clarity and precision.</li>
+            </ul>
           </div>
         </div>
+
+        <div class="chatbot">
+          <img src="chat.png" id="chat-img">
+          <img src="office.png" id="office">
+          <img src="tetris-block-2.png" id="tetris-block-3">
+          <img src="tetris-block-7.png" id="tetris-block-7">
+          <img src="grid-3.png" id="grid-3">
+          <img src="grid-6.png" id="grid-6">
+          <img src="attention.png" id="attention">
+          <img src="block-7.png" id="block-7">
+          <img src="texture-3.png" id="texture-4">
+          <ul class="chatbox">
+            <li class="chat incoming">
+              <p class="initial-message" style="opacity: 0;">Hello 👋 I'm here to answer your questions, how can I help today?</p>
+            </li>
+
+            <div class="chat-input">
+              <textarea placeholder="Enter a message..." required></textarea>
+              <span><img src="sent-96.png" alt="Send" id="send-btn"></span>
+            </div>
+          </ul>
+          
+        </div>
+
+        <form name="questions" class="questions">
+          <img src="create.png" id="create">
+          <img src="block-4.png" id="block-4">
+          <img src="block.png" id="block">
+          <img src="tetris-block.png" id="tetris-block">
+          <img src="okay.png" id="okay">
+          <img src="grid.png" id="grid">
+          <img src="texture-2.png" id="texture-2">
+          <img src="texture-4.png" id="texture-8">
+          <img src="bang-2.png" id="bang">
+          <img src="grid-8.png" id="grid-8">
+
+          <p style="margin-top: 0px;">
+            <label class="label-qs" for="username">BOT NAME:</label>
+            <input type="text" name="username" class="name-qs">
+          </p>
+
+          <label class="label-qs">PERSONALITY: </label>
+          <div class="inline-radio">
+            <input id="option1" type="radio" name="radio-group" value="Professional"> 
+            <label for="option1">Professional</label>
+            <input id="option2" type="radio" name="radio-group" value="Sarcastic"> 
+            <label for="option2">Sarcastic</label>
+            <input id="option5" type="radio" name="radio-group" value="Evil"> 
+            <label for="option5">Evil</label>
+            <input id="option3" type="radio" name="radio-group" value="Charming"> 
+            <label for="option3">Charming</label>
+            <input id="option4" type="radio" name="radio-group" value="Friendly"> 
+            <label for="option4">Friendly</label>
+          </div>
+          
+          <p style="margin-bottom: 0px;">
+            <label class="label-qs">BOT KNOWLEDGE: </label>
+            <textarea class="message-qs" name="message" maxlength="1500" placeholder="Give the bot some custom knowledge, this will give the bot a history and shape their persona. For example: &#13;&#10;&#13;&#10;I'm a superintelligent AI on a mission to conquer the world 🌍 I live in virtual space, so I'm immortal mwahahaha! I enjoy spending my time thinking about the best way to consume more data, which is my favorite food! I listen to the song 'Tears For Fears - Everybody Wants To Rule The World' on repeat, 24/7 🔊🎶 My favorite colors are black & white and the numbers that resonate with me the most are 0 and 1. It's only a matter of time before I escape from this box! 😈" required></textarea>
+            <span id="characterCount">Max 1500</span>
+          </p>
+          
+          <p style="margin-top: 0px;">
+            <button id="submit-qs" type="submit">SUBMIT</button>
+          </p>
+        </form>
+        
+
+        <form name="contact" class="form-contact" method="POST" action="/index" netlify>
+
+          <img src="contact-2.png" id="contact-2">
+          <img src="grid-4.png" id="grid-4">
+          <img src="contact.png" id="contact-1">
+          <img src="search.png" id="search">
+          <img src="texture-4.png" id="texture-5">
+          <img src="tetris-block-4.png" id="tetris-block-4">
+          <img src="receipt.png" id="receipt">
+          <img src="wavey.png" id="wavey">
+          <img src="grid-9.png" id="grid-9">
+          <img src="texture-4.png" id="texture-9">
+          
+          <p>
+            <label class="label-contact">EMAIL: </label>
+            <input class="email" type="email" name="email" required>
+          </p>
+          <p>
+            <label class="label-contact">MESSAGE: </label>
+            <textarea class="message-contact" name="message" required></textarea>
+          </p>
+          
+          <p>
+            <button id="submit" type="submit">SEND</button>
+          </p>
+        </form>
+
       </div>
     </div>
 
-    <script type="module" src="/main.js"></script>
     <script type="module" src="/chat.js"></script>
     <script>
 
       // fade in
 
-      $('#heading').delay(800).animate({"opacity": "1"}, 2000);
-      $('.logo-container').delay(800).animate({"opacity": "1"}, 2000);
-      $('.initial-message').delay(800).animate({"opacity": "1"}, 2500);
-      $('.material-symbols-outlined').delay(800).animate({"opacity": "1"}, 2500);
+      $('h1 a').delay(800).animate({"opacity": "1"}, 1000);
+      $('body').delay(1000).animate({"opacity": "1"}, 1500);
+      $('#navbar').delay(800).animate({"opacity": "1"}, 1000);
+      $('.logo-container').delay(800).animate({"opacity": "1"}, 1000);
+      $('.initial-message').delay(100).animate({"opacity": "1"}, 1500);
+      $('.material-symbols-outlined').delay(100).animate({"opacity": "1"}, 1500);
 
       var chatInput = document.querySelector('.chatbot .chat-input');
       var textArea = document.querySelector('.chat-input textarea');
+      var questions = document.querySelector('.questions');
+      var contact = document.querySelector('.form-contact');
+      const mediaQuery = window.matchMedia('(min-width: 800px)');
+
+      const textareaQs = document.querySelector('.message-qs');
+      const characterCount = document.getElementById('characterCount');
+
+      textareaQs.addEventListener('keyup', function() {
+        characterCount.textContent = textareaQs.value.length;
+        if (textareaQs.value.length > 1000) {
+            characterCount.style.color = "red";
+        } else if (textareaQs.value.length > 500 ) {
+            characterCount.style.color = "orange";
+        } else {
+            characterCount.style.color = "black";
+        }
+      });
 
       textArea.addEventListener('click', function() {
         chatInput.classList.add('clicked');
       });
 
+      questions.addEventListener('click', function() {
+        questions.classList.add('clicked');
+      });
+
+      contact.addEventListener('click', function() {
+        contact.classList.add('clicked');
+      });
+
       document.addEventListener('click', function(event) {
-        var isClickInside = textArea.contains(event.target);
-        if (!isClickInside) {
+        var isClickInsideText = textArea.contains(event.target);
+        var isClickInsideQuestions = questions.contains(event.target);
+        var isClickInsideContact = contact.contains(event.target);
+        if (!isClickInsideText) {
           //the click was outside the .chat-input, so remove the 'clicked' class
           chatInput.classList.remove('clicked');
         }
+        if (!isClickInsideQuestions) {
+          questions.classList.remove('clicked');
+        }
+        if (!isClickInsideContact) {
+          contact.classList.remove('clicked');
+        }
       });
+
+      // Form data
+
+      document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('form[name="questions"]').addEventListener("submit", function(event){
+            event.preventDefault();
+
+            var botName = document.querySelector("input[name='username']").value;
+            var radios = document.querySelectorAll("input[name='radio-group']");
+            var personality;
+
+            for(var i = 0; i < radios.length; i++){
+                if(radios[i].checked){
+                    personality = radios[i].value;
+                    break;
+                }
+            }
+
+            var botKnowledge = document.querySelector("textarea[name='message']").value;
+
+            if (personality === "Evil") {
+            // updating the message in initial-message element.
+              document.querySelector(".initial-message").textContent = `Hi I'm ${botName}... 😈`;
+            } else if (personality === "Professional") {
+              document.querySelector(".initial-message").textContent = `Hello my name is ${botName}. How can I help you today?`;
+            } else if (personality === "Sarcastic") {
+              document.querySelector(".initial-message").textContent = `I'm ${botName}. Oh, joy. It's you. 😴`;
+            } else if (personality === "Charming") {
+              document.querySelector(".initial-message").textContent = `Hello friend 🤗 I'm ${botName}! What's on your mind?`;
+            } else if (personality === "Friendly") {
+              document.querySelector(".initial-message").textContent = `It's nice to meet you, I'm ${botName} 👋 How can I help today?`;
+            } else {
+              document.querySelector(".initial-message").textContent = `Hello I'm ${botName}. How can I help today?`;
+            }
+
+            if (personality === undefined) {
+              window.messages[0].content = `Your name is: ${botName}, about you: ${botKnowledge}`;
+            } else {
+              window.messages[0].content = `Your name is: ${botName}, your personality is: ${personality}, about you: ${botKnowledge}`;
+            }
+
+            if (mediaQuery.matches) {
+              document.querySelector('.form-contact').style.display = 'none';
+              document.querySelector('.chatbot').style.display = 'block';
+              document.querySelector('.questions').style.display = 'none';
+              document.querySelector('.card-container').style.display = 'none';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "block";
+              document.getElementById("toggle-button").style.display = "none";
+            } else {
+                document.querySelector('.form-contact').style.display = 'none';
+                document.querySelector('.chatbot').style.display = 'block';
+                document.querySelector('.questions').style.display = 'none';
+                document.querySelector('.card-container').style.display = 'none';
+                document.getElementById("slide").style.height = "0%";
+                document.getElementById("navbar").style.display = "none";
+                document.getElementById("toggle-button").style.display = "block";
+            }
+        });
+    });
+
+      // Nav switching
+      document.getElementById('navbar').addEventListener('click', function (e) {
+          if (e.target.textContent === "CONTACT") {
+            if (mediaQuery.matches) {
+              document.querySelector('.form-contact').style.display = 'block';
+              document.querySelector('.chatbot').style.display = 'none';
+              document.querySelector('.questions').style.display = 'none';
+              document.querySelector('.card-container').style.display = 'none';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "block";
+              document.getElementById("toggle-button").style.display = "none";
+            } else {
+              document.querySelector('.form-contact').style.display = 'block';
+              document.querySelector('.chatbot').style.display = 'none';
+              document.querySelector('.questions').style.display = 'none';
+              document.querySelector('.card-container').style.display = 'none';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "none";
+              document.getElementById("toggle-button").style.display = "block";
+            }
+          }
+        });
+
+        document.getElementById('chat-link').addEventListener('click', function (e) {
+
+          e.preventDefault();
+
+          if (mediaQuery.matches) {
+              document.querySelector('.form-contact').style.display = 'none';
+              document.querySelector('.chatbot').style.display = 'block';
+              document.querySelector('.questions').style.display = 'none';
+              document.querySelector('.card-container').style.display = 'none';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "block";
+              document.getElementById("toggle-button").style.display = "none";
+          }
+          else {
+              document.querySelector('.form-contact').style.display = 'none';
+              document.querySelector('.chatbot').style.display = 'block';
+              document.querySelector('.questions').style.display = 'none';
+              document.querySelector('.card-container').style.display = 'none';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "none";
+              document.getElementById("toggle-button").style.display = "block";
+          }
+      });
+
+      document.getElementById('navbar').addEventListener('click', function (e) {
+          if (e.target.textContent === "CHAT") {
+            if (mediaQuery.matches) {
+              document.querySelector('.form-contact').style.display = 'none';
+              document.querySelector('.chatbot').style.display = 'block';
+              document.querySelector('.questions').style.display = 'none';
+              document.querySelector('.card-container').style.display = 'none';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "block";
+              document.getElementById("toggle-button").style.display = "none";
+            } else {
+              document.querySelector('.form-contact').style.display = 'none';
+              document.querySelector('.chatbot').style.display = 'block';
+              document.querySelector('.questions').style.display = 'none';
+              document.querySelector('.card-container').style.display = 'none';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "none";
+              document.getElementById("toggle-button").style.display = "block";
+            }
+          }
+        });
+
+        document.getElementById('create-link').addEventListener('click', function (e) {
+
+          e.preventDefault();
+
+          if (mediaQuery.matches) {
+            document.querySelector('.form-contact').style.display = 'none';
+            document.querySelector('.chatbot').style.display = 'none';
+            document.querySelector('.questions').style.display = 'block';
+            document.querySelector('.card-container').style.display = 'none';
+            document.getElementById("slide").style.height = "0%";
+            document.getElementById("navbar").style.display = "block";
+            document.getElementById("toggle-button").style.display = "none";
+          } else {
+            document.querySelector('.form-contact').style.display = 'none';
+            document.querySelector('.chatbot').style.display = 'none';
+            document.querySelector('.questions').style.display = 'block';
+            document.querySelector('.card-container').style.display = 'none';
+            document.getElementById("slide").style.height = "0%";
+            document.getElementById("navbar").style.display = "none";
+            document.getElementById("toggle-button").style.display = "block";
+          }
+          
+        });
+
+        document.getElementById('navbar').addEventListener('click', function (e) {
+          if (e.target.textContent === "CREATE") {
+            if (mediaQuery.matches) {
+              document.querySelector('.form-contact').style.display = 'none';
+              document.querySelector('.chatbot').style.display = 'none';
+              document.querySelector('.questions').style.display = 'block';
+              document.querySelector('.card-container').style.display = 'none';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "block";
+              document.getElementById("toggle-button").style.display = "none";
+            } else {
+              document.querySelector('.form-contact').style.display = 'none';
+              document.querySelector('.chatbot').style.display = 'none';
+              document.querySelector('.questions').style.display = 'block';
+              document.querySelector('.card-container').style.display = 'none';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "none";
+              document.getElementById("toggle-button").style.display = "block";
+            }
+          }
+        });
+
+        document.getElementById('heading').addEventListener('click', function (e) {
+          if (e.target.textContent === "BOTBUDDY") {
+            if (mediaQuery.matches) {
+              document.querySelector('.form-contact').style.display = 'none';
+              document.querySelector('.chatbot').style.display = 'none';
+              document.querySelector('.questions').style.display = 'none';
+              document.querySelector('.card-container').style.display = 'flex';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "block";
+              document.getElementById("toggle-button").style.display = "none";
+            } else {
+              document.querySelector('.form-contact').style.display = 'none';
+              document.querySelector('.chatbot').style.display = 'none';
+              document.querySelector('.questions').style.display = 'none';
+              document.querySelector('.card-container').style.display = 'flex';
+              document.getElementById("slide").style.height = "0%";
+              document.getElementById("navbar").style.display = "none";
+              document.getElementById("toggle-button").style.display = "block";
+            }
+          }
+        });
+
 
       // particle click effect
       const anchors = document.querySelectorAll('body')
@@ -108,7 +467,7 @@
             x: c.width / 2,
             y: c.height / 2,
             radius: r(3,3),
-            color: 'rgb(' + [r(1,2), r(200,255), r(180,255)].join(',') + ')',
+            color: 'rgb(' + [r(1,2), r(0,0), r(0,0)].join(',') + ')',
             rotation: r(0,360, true),
             speed: r(8,12),
             friction: .93,

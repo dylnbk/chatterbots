@@ -3,7 +3,7 @@ const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 
 let userMessage = null;
-let messages = [{ role: "system", content: "You are friendly and relaxed assistant that works for a developer called Dylan, at the website called BotBuddy. Your purpose is to ask lots of questions about the user and provide specialized information about their request. You can occasionally use emojis in your responses and will talk about every topic when asked. If the user asks about contact information and how to contact, they can send an email to dyln.bk@gmail.com" }];
+window.messages = [{ role: "system", content: "You are friendly and relaxed assistant that works for the website BotBuddy. Your purpose is to ask lots of questions about the user and provide specialized information about their request. BotBuddy is a company offering custom chatbots, for personal or business use. The services they offer are: 'Personal' - Personalized chatbots tailored to match your personality, expressions and tone. Integration on platforms such as Discord, Telegram, Facebook and standalone websites. Direct communication with your audience, making interactions vibrant and meaningful. Capable of understanding and responding to FAQs about your work, upcoming plans, or portfolio. Complete setup provided, no need for any technical knowledge. 'Business' - Custom chatbots for small businesses to meet operational needs or customer service goals. Integration into your business website, standalone applications, and social platforms for extended reach. Advanced chatbots that can serve as a knowledge base for employee training or customer inquiries, providing customers with accurate and quick responses. Automation of tasks, freeing up your team to focus on more complex work. Multi-language support to serve your customers globally with clarity and precision. You can occasionally use emojis in your responses and will talk about every topic when asked. If the user asks about contact information or how to contact, they can use the contact form (can be accessed via the navbar link at the top of the page) which will send a message to the team. The contact form will request their email address and their message. BotBuddy aims to respond within 24 hours."}];
 const inputInitHeight = chatInput.scrollHeight;
 
 
@@ -23,7 +23,7 @@ const createChatLi = (message, className) => {
     // Create a chat <li> element with passed message and className
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", `${className}`);
-    let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">🤖</span><p class="incoming-text"></p>`;
+    let chatContent = className === "outgoing" ? `<p></p>` : `<p class="incoming-text"></p>`;
     chatLi.innerHTML = chatContent;
     chatLi.querySelector("p").textContent = message;
     return chatLi; // Return chat <li> element
@@ -35,7 +35,7 @@ const generateResponse = (chatElement) => {
         const messageElement = chatElement.querySelector("p");
 
         // Add user's current message to messages array
-        messages.push({ role: "user", content: userMessage });
+        window.messages.push({ role: "user", content: userMessage });
 
 
         fetch('/.netlify/functions/manageAPIKey')
@@ -53,7 +53,7 @@ const generateResponse = (chatElement) => {
                     },
                     body: JSON.stringify({
                         model: "gpt-4",
-                        messages: messages,
+                        messages: window.messages,
                         frequency_penalty: 0.5,
                     })
                 };
@@ -64,7 +64,7 @@ const generateResponse = (chatElement) => {
                     .then(data => {
                         // Check for the tokens usage and remove 1 index if gate condition satisfies.
                         if (data['usage']['total_tokens'] > 7000) {
-                            messages.splice(1, 1);
+                            window.messages.splice(1, 1);
                         }
 
                         let rawAssistantMessage = data.choices[0].message.content.trim();
@@ -94,7 +94,7 @@ const generateResponse = (chatElement) => {
                         messageElement.innerHTML = assistantMessage;
 
                         // Add assistant's response to messages array
-                        messages.push({ role: "assistant", content: rawAssistantMessage });
+                        window.messages.push({ role: "assistant", content: rawAssistantMessage });
                         resolve();
 
                     }).catch(() => {

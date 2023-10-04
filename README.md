@@ -2,4 +2,5 @@
 
 ### TODO:
 
-Fine tune a GPT model and provide an alt version of the bot
+# build a personality questionnaire that creates a demo bot based on the answers
+# build a contact us form
