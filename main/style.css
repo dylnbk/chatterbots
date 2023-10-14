@@ -30,7 +30,9 @@
   right: 0;
   margin: 0 auto;
   height: 100%;
-  width: 650px;
+  width: 100%;
+  max-width: 650px;
+  z-index: -1;
 }
 
 body {
@@ -65,19 +67,18 @@ textarea {
   align-items: center;
   justify-content: center;
   height: 70px;
-  padding: 5px;
   border-bottom: solid 3px black;
   animation: line .5s linear forwards, fadeIn .5s ease-in-out forwards;
 }
 
 #navbar {
   gap: 40px;
-  display: flex;
+  display: block;
   margin-top: 35px;
 }
 
 ul#navbar li {
-  justify-content: space-between;
+  padding: 0 10px;
   display:inline;
 }
 
@@ -518,6 +519,7 @@ ul#navbar li a {
   color: black;
   display: inline-block;
   position: relative;
+  z-index: 999;
 }
 
 ul#navbar li a:after {
@@ -560,6 +562,7 @@ ul#navbar li a:hover {
   display: none;
   width: 100%;
   height: calc(100% - 227px);
+  max-height: 790px;
   border-radius: 5px;
   margin-top: 50px;
   animation: fadeIn 0.5s ease-in-out forwards;
@@ -587,7 +590,7 @@ ul#navbar li a:hover {
   padding: 10px;
   display: flex;
   font-size: 18px;
-  margin: 10px auto 50px auto;
+  margin: 10px auto 30px auto;
   width: 90%;
   resize: none;
   color: #000000;
@@ -606,7 +609,8 @@ textarea.message-contact {
   font-size: 18px;
   margin: 10px auto 20px auto;
   width: 90%;
-  min-height: calc(100vh - 550px);
+  height: calc(100vh - 530px);
+  max-height: 460px;
   resize: none;
   color: #000000;
   border: none;
@@ -675,12 +679,13 @@ textarea.message-contact {
   display: none;
   width: 100%;
   height: calc(100% - 227px);
+  max-height: 790px;
   border-radius: 5px;
   margin-top: 50px;
   animation: fadeIn 0.5s ease-in-out forwards;
   transition: .5s ease-in-out;
   outline: solid 3px black;
-  
+  overflow: auto;
 }
 
 .questions:hover,
@@ -721,7 +726,9 @@ textarea.message-qs {
   font-size: 18px;
   margin: 10px auto 20px auto;
   width: 90%;
-  min-height: calc(100vh - 705px);
+  height: calc(100vh - 670px);
+  min-height: 100px;
+  max-height: 350px;
   resize: none;
   color: #000000;
   border: none;
@@ -731,9 +738,10 @@ textarea.message-qs {
 }
 
 #characterCount {
-  font-size: 20px;
-  right: 40px;
-  position: absolute;
+  display: flex;
+  justify-content: end;
+  margin-right: 40px;
+  font-size: large;
   color: #000000;
 }
 
@@ -772,25 +780,24 @@ textarea.message-qs {
 }
 
 .card-container {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
+  border-radius: 5px;
+  outline: 3px solid #000000;
   height: calc(100% - 227px);
+  max-height: 790px;
   width: 100%;
   margin-top: 50px;
   animation: fadeIn 0.5s ease-in-out forwards;
   transition: .5s ease-in-out;
+  overflow: auto;
 }
 
 .card {
-  height: 100%;
-  border-radius: 5px;
-  border: 3px solid #000000;
+  margin: 5px auto;
   transition: .5s ease-in-out;
 }
 
-.card:hover,
-.card.clicked {
+.card-container:hover,
+.card-container.clicked {
   box-shadow: 0px 0px 25px #00000080;
 }
 
@@ -810,7 +817,7 @@ textarea.message-qs {
 }
 
 .card ul li {
-  padding: 5px 20px 5px 0;
+  padding: 7px 20px 7px 0;
   font-family: monospace;
   color: #000000;
   font-size: 17px;
@@ -820,6 +827,44 @@ textarea.message-qs {
 hr {
   width: 70%;
   border-top: 1px solid black;
+}
+
+footer {
+  position: inherit;
+  font-size: 18px;
+  font-family: 'Inconsolata', monospace;
+  width: 100%;
+  bottom: 7px;
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+  position: relative;
+  color: #000000;
+}
+
+footer a:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 4px;
+  bottom: 0;
+  left: 0;
+  background-color: #0087ca;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+footer a:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+footer a:hover {
+  cursor: pointer;
+  animation: move 1s linear infinite;
 }
 
 #info {
@@ -925,6 +970,7 @@ ul.chatbox {
   user-select: text;
   position: relative;
   width: 100%;
+  max-width: 650px;
   background: #ffffff00;
   border-radius: 15px;
   opacity: 1;
@@ -1054,6 +1100,37 @@ ul.chatbox {
   transition:all .5s ease-in-out;
 }
 
+#toggle-button {
+  z-index: 999;
+  display: none;
+  position: inherit;
+  cursor: pointer;
+}
+
+#slide {
+  height: 145px;
+  left: 0;
+  right: 0;
+}
+
+.closebtn {
+  display: none !important;
+}
+
+#closebtn {
+  padding: 0px !important;
+}
+
+#botknowledge-margin {
+  margin-bottom: 0px; 
+  margin-top: 20px;
+} 
+
+#botname-margin {
+  margin-top: 5px; 
+  margin-bottom: 20px;
+}
+
 @keyframes move {
   0% {
     filter: hue-rotate(0deg);
@@ -1148,121 +1225,154 @@ ul.chatbox {
   }
 }
 
+@media (max-height: 720px) {
+  .name-qs {
+    margin: 0px auto 0px auto;
+  }
+
+  #submit-qs {
+    bottom: 20px !important;
+  }
+
+  #botknowledge-margin {
+    margin-bottom: 0px; 
+    margin-top: 5px;
+  } 
+  
+  #botname-margin {
+    margin-top: 0px; 
+    margin-bottom: 5px;
+  }
+}
+
 @media (max-width: 800px) {
 
-  #send-btn {
-    width: 35px;
+  .card-container {
+    margin-top: 10px;
+    height: calc(100% - 150px);
+  }
+
+  .questions {
+    margin-top: 10px;
+    height: calc(100% - 150px);
   }
 
   .chatbot .chatbox {
-    height: calc(100% - 410px);
-    padding: 30px 10px 100px 0px !important;
+    margin-top: 10px;
+    height: calc(100% - 280px);
   }
 
-  .chatbox .outgoing {
-    margin-left: 67px;
+  .chatbot .chat-input {
+    top: calc(100% - 205px);
   }
 
-  .title-container {
-    height: 100px;
+  .form-contact {
+    margin-top: 10px;
+    height: calc(100% - 150px);
   }
 
-  h1 {
-    font-size: 80px;
-    letter-spacing: -4px;
+  textarea.message-qs {
+    height: calc(100vh - 630px);
+    font-size: 15px;
+    max-height: 300px;
   }
 
-  #contact {
-    max-width: 450px;
-    width: 90%;
-    top: 80px;
+  .email {
+    margin-bottom: 30px;
+  }
+  #toggle-button {
+    display: block;
+    top: 5px;
+    right: -10px;
   }
 
-  #simple {
-    font-size: 22px;
-    top: 130px;
+  #heading {
+    padding-right: 30px;
   }
 
-  .chat-input textarea  {
-    width: 85%;
-    font-size: 0.85rem;
+  #slide {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 !important;
   }
 
-  .logo-container{
-    padding-bottom: 12px;
+  #navbar {
+    width: 100% !important;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 !important;
+    padding-left: 0px;
   }
 
-  .logo {
-    max-height: 100%;
-    width: 62px;
+  .closebtn {
+    padding: 10px;
+    display: flex !important;
   }
 
-  .logo-container {
-    padding-bottom: 6px;
+  .inline-radio {
+    padding: 0 10px;
   }
 
-  .line {
-    max-width: 88%;
-    top: 115px;
-    animation: line-short 1.5s linear forwards, fadeIn 1.5s ease-in forwards;
+  #characterCount {
+    font-size: medium;
+    margin-right: 5%;
+
+  }
+}
+
+@media (max-width: 685px) {
+
+  .inline-radio {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  .chatbox .incoming span {
-    font-size: 35px;
-    margin: 0px 10px 0px 0px;
-    padding-bottom: 14px;
+  #submit-qs {
+    bottom: 10px;
   }
 
 }
 
-@media (max-width: 380px) {
-
-  .chatbox .outgoing {
-    margin-left: 60px;
+@media (max-width: 320px) {
+  h1 a {
+    font-size: 40px;
+  }
+  .inline-radio label {
+    padding: 6px;
   }
 
-  .chatbox .incoming span {
-    font-size: 30px;
+  .inline-radio {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  .title-container {
-    height: 80px;
-  }
-
-  h1 {
-    font-size: 60px;
-  }
-
-  #simple {
-    font-size: 18px;
-    top: 105px;
-  }
-
-  #contact {
-    width: 90%;
-    top: 85px;
-  }
-
-  .logo-container{
-    padding-bottom: 5px;
+  .inline-radio label {
+    font-size: 15px;
   }
 
   .logo {
-    max-height: 100%;
-    width: 47px;
+    width: 32px;
+    margin-top: 20px;
   }
 
-  .chat-input textarea  {
-    width: 85%;
+  #toggle-button {
+    top: 15px;
+    right: -5px;
   }
 
-  .chatbot .chatbox {
-    height: calc(100% - 380px);
-  }
-
-  .line {
-    max-width: 80%;
-    top: 90px;
+  #toggle {
+    width: 50px;
   }
 }
 
