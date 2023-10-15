@@ -3,7 +3,7 @@
   top: 0px;
   left: 0px;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-color: #ffffff;
 }
 
@@ -549,7 +549,7 @@ ul#navbar li a:hover {
   position: absolute;
   z-index: 1;
   width: 90%;
-  height: 100vh;
+  height: 100dvh;
   display: grid;
   place-content: center;
   text-align: center;
@@ -561,13 +561,13 @@ ul#navbar li a:hover {
 .form-contact {
   display: none;
   width: 100%;
-  height: calc(100% - 227px);
+  height: calc(100dvh - 227px);
   max-height: 790px;
   border-radius: 5px;
   margin-top: 50px;
   animation: fadeIn 0.5s ease-in-out forwards;
   transition: .5s ease-in-out;
-  outline: solid 3px black;
+  border: solid 3px black;
 }
 
 .form-contact:hover,
@@ -596,6 +596,7 @@ ul#navbar li a:hover {
   color: #000000;
   border: none;
   border-bottom: 1px solid #000000;
+  border-radius: 0px;
   transition: 1s box-shadow;
   outline: none;
   transition: 0.1s ease-in-out;
@@ -609,12 +610,13 @@ textarea.message-contact {
   font-size: 18px;
   margin: 10px auto 20px auto;
   width: 90%;
-  height: calc(100vh - 530px);
-  max-height: 460px;
+  height: calc(100vh - 480px);
+  max-height: 475px;
   resize: none;
   color: #000000;
   border: none;
   border-bottom: 1px solid #000000;
+  border-radius: 0px;
   outline: none; 
   transition: 0.1s ease-in-out;
 }
@@ -670,6 +672,7 @@ textarea.message-contact {
   color: #000000;
   border: none;
   border-bottom: 1px solid #000000;
+  border-radius: 0px;
   transition: 1s box-shadow;
   outline: none;
   transition: 0.1s ease-in-out;
@@ -678,13 +681,13 @@ textarea.message-contact {
 .questions {
   display: none;
   width: 100%;
-  height: calc(100% - 227px);
+  height: calc(100dvh - 227px);
   max-height: 790px;
   border-radius: 5px;
   margin-top: 50px;
   animation: fadeIn 0.5s ease-in-out forwards;
   transition: .5s ease-in-out;
-  outline: solid 3px black;
+  border: solid 3px black;
   overflow: auto;
 }
 
@@ -727,12 +730,13 @@ textarea.message-qs {
   margin: 10px auto 20px auto;
   width: 90%;
   height: calc(100vh - 670px);
-  min-height: 100px;
+  min-height: 120px;
   max-height: 350px;
   resize: none;
   color: #000000;
   border: none;
   border-bottom: 1px solid #000000;
+  border-radius: 0px;
   outline: none; 
   transition: 0.1s ease-in-out;
 }
@@ -781,8 +785,8 @@ textarea.message-qs {
 
 .card-container {
   border-radius: 5px;
-  outline: 3px solid #000000;
-  height: calc(100% - 227px);
+  border: 3px solid #000000;
+  height: calc(100dvh - 227px);
   max-height: 790px;
   width: 100%;
   margin-top: 50px;
@@ -982,8 +986,9 @@ ul.chatbox {
   border-radius: 5px;
   overflow-y: auto;
   bottom: 70px;
-  height: calc(100% - 357px);
-  outline: solid 3px black;
+  height: calc(100dvh - 357px);
+  border: solid 3px black;
+  border-bottom: solid 4px black;
   transition: .5s ease-in-out;
   padding: 30px 20px 100px 20px !important;
 }
@@ -994,7 +999,6 @@ ul.chatbox {
 }
 .chatbox .outgoing {
   justify-content: flex-end;
-  margin-left: 68px;
 }
 
 .chatbox .incoming span {
@@ -1045,7 +1049,7 @@ ul.chatbox {
 .chatbot .chat-input {
   position: absolute;
   background: white;
-  top: calc(100% - 240px);
+  top: calc(100dvh - 236px);
   width: 100%;
   left: 0;
   height: auto; 
@@ -1054,7 +1058,12 @@ ul.chatbox {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-left: 3px solid #000000;
+  border-right: 3px solid #000000;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   opacity: 0;
   animation: fadeIn 0.5s ease-in-out forwards;
   transition: 0.5s ease-in-out;
@@ -1226,6 +1235,7 @@ ul.chatbox {
 }
 
 @media (max-height: 720px) {
+
   .name-qs {
     margin: 0px auto 0px auto;
   }
@@ -1245,36 +1255,81 @@ ul.chatbox {
   }
 }
 
+@media (max-height: 670px) {
+
+  .inline-radio label {
+    padding: 6px;
+  }
+
+  .inline-radio {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px !important;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  textarea.message-qs {
+    font-size: 13px !important;
+    min-height: 83px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+
+  .name-qs {
+    padding: 2px;
+    padding-bottom: 5px;
+  }
+
+  #submit-qs {
+    bottom: 10px !important;
+  }
+
+  #botknowledge-margin {
+    margin-bottom: 0px; 
+    margin-top: 0px;
+  } 
+  
+  #botname-margin {
+    margin-top: 0px; 
+    margin-bottom: 0px;
+  }
+}
+
 @media (max-width: 800px) {
 
   .card-container {
     margin-top: 10px;
-    height: calc(100% - 150px);
+    height: calc(100dvh - 150px);
   }
 
   .questions {
     margin-top: 10px;
-    height: calc(100% - 150px);
+    height: calc(100dvh - 150px);
   }
 
   .chatbot .chatbox {
     margin-top: 10px;
-    height: calc(100% - 280px);
+    height: calc(100dvh - 280px);
   }
 
   .chatbot .chat-input {
-    top: calc(100% - 205px);
+    top: calc(100dvh - 199px);
   }
 
   .form-contact {
     margin-top: 10px;
-    height: calc(100% - 150px);
+    height: calc(100dvh - 150px);
   }
 
   textarea.message-qs {
-    height: calc(100vh - 630px);
+    height: calc(100dvh - 630px);
     font-size: 15px;
     max-height: 300px;
+  }
+
+  textarea.message-contact {
+    height: calc(100dvh - 450px);
   }
 
   .email {
@@ -1341,7 +1396,7 @@ ul.chatbox {
 
 }
 
-@media (max-width: 320px) {
+@media (max-width: 326px) {
   h1 a {
     font-size: 40px;
   }
